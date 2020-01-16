@@ -34,6 +34,9 @@ void two_line(info_t *info, int *line, int *nb)
     } if (info->ia.nb_line_rm == 2) {
         let_two(info, line, nb);
         return;
+    } if (info->ia.nb_full == 1) {
+        rm_one(info, line, nb);
+        return;
     } if (info->ia.nb_full > 0) {
         rm_max(info, line, nb);
         return;
