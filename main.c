@@ -75,7 +75,8 @@ int main(int ac, char **av)
         return (84);
     info->max = my_getnbr(av[2]);
     init_map(info, ac, av);
-    game_loop(info);
+    if (game_loop(info) == -2)
+        return (0);
     if (info->who_won == 1)
         return (1);
     else

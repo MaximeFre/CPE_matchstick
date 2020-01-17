@@ -32,6 +32,8 @@ int input(void)
     char *buf = malloc_back(20);
 
     read(0, buf, 19);
+    if (buf[0] == '\0')
+        return (-2);
     if (check_nb(buf) == -1)
         return (-1);
 
@@ -44,6 +46,10 @@ int get_line(info_t *info)
 
     my_putstr("\nLine: ");
     nb = input();
+    if (nb == -2) {
+        my_putstr("\n");
+        return (-2);
+    }
     if (nb == -1)
         return (-1);
     if (nb > info->nb_lines || nb <= 0) {
@@ -63,9 +69,9 @@ int get_col(info_t *info, int line)
 
     my_putstr("Matches: ");
     nb = input();
-    if (nb == -1) {
+    if (nb == -1 || nb == -2) {
         my_putstr("\n");
-        return (-1);
+        return (nb);
     } if (nb > info->max) {
         my_putstr("Error: you cannot remove more than ");
         my_putstr(my_int_to_str(info->max));
@@ -81,7 +87,7 @@ int get_col(info_t *info, int line)
     return (nb);
 }
 
-void game_loop(info_t *info)
+int game_loop(info_t *info)
 {
     int line = 0;
     int nb = 0;
@@ -89,12 +95,8 @@ void game_loop(info_t *info)
     draw_map(info);
     while (info->end == 0) {
         my_putstr("\nYour turn:");
-        line = get_line(info);
-        while (line == -1)
-            line = get_line(info);
-        nb = get_col(info, line);
-        while (nb == -1)
-            nb = get_col(info, line);
+        if (get_info(info, &line, &nb) == -2)
+            return (-2);
         info->line[line - 1].nb_match -= nb;
         put_removed(1, line, nb);
         draw_map(info);
@@ -102,4 +104,5 @@ void game_loop(info_t *info)
         if (info->end == 0)
             ia(info);
     }
+    return (0);
 }

@@ -17,6 +17,7 @@ SRC = 	main.c	\
 		end.c	\
 		nb_line.c	\
 		op.c	\
+		getinfo.c	\
 
 NAME = matchstick
 

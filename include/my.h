@@ -12,7 +12,7 @@
 int my_getnbr(char const *str);
 int my_putstr(char const *str);
 char *malloc_str(int lenght);
-void game_loop(info_t *info);
+int game_loop(info_t *info);
 void draw_map(info_t *info);
 char *malloc_back(int lenght);
 int my_strlen(char const *str);
@@ -27,3 +27,6 @@ void one_line(info_t *info, int *line, int *nb);
 void rm_one(info_t *info, int *line, int *nb);
 void let_one(info_t *info, int *line, int *nb);
 void let_two(info_t *info, int *line, int *nb);
+int get_info(info_t *info, int *line, int *nb);
+int get_col(info_t *info, int line);
+int get_line(info_t *info);
