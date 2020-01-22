@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 #include "include/my.h"
 
 int check_nb(char *str)
@@ -29,14 +30,14 @@ int check_nb(char *str)
 
 int input(void)
 {
-    char *buf = malloc_back(20);
+    char *buf = NULL;
+    size_t nb = 0;
 
-    read(0, buf, 19);
+    getline(&buf, &nb, stdin);
     if (buf[0] == '\0')
         return (-2);
     if (check_nb(buf) == -1)
         return (-1);
-
     return (my_getnbr(buf));
 }
 
