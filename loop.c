@@ -76,13 +76,13 @@ int get_col(info_t *info, int line)
     } if (nb > info->max) {
         my_putstr("Error: you cannot remove more than ");
         my_putstr(my_int_to_str(info->max));
-        my_putstr(" matches per turn\n");
+        my_putstr(" matches per turn");
         return (-1);
     } if (nb <= 0) {
-        my_putstr("Error: you have to remove at least one match\n");
+        my_putstr("Error: you have to remove at least one match");
         return (-1);
     } if (nb > info->line[line - 1].nb_match) {
-        my_putstr("Error: not enough matches on this line\n");
+        my_putstr("Error: not enough matches on this line");
         return (-1);
     }
     return (nb);

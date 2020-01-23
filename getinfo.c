@@ -18,7 +18,7 @@ int get_info(info_t *info, int *line, int *nb)
         return (-2);
     *nb = get_col(info, *line);
     while (*nb == -1)
-        *nb = get_col(info, *line);
+        get_info(info, line, nb);
     if (*nb == -2)
         return (-2);
     return (0);
