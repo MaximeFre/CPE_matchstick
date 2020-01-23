@@ -11,15 +11,18 @@
 
 int get_info(info_t *info, int *line, int *nb)
 {
-    *line = get_line(info);
-    while (*line == -1)
+    *line = -1;
+    while (*line == -1 || *nb == -1) {
         *line = get_line(info);
-    if (*line == -2)
-        return (-2);
-    *nb = get_col(info, *line);
-    while (*nb == -1)
-        get_info(info, line, nb);
-    if (*nb == -2)
-        return (-2);
+        while (*line == -1)
+            *line = get_line(info);
+        if (*line == -2)
+            return (-2);
+        *nb = get_col(info, *line);
+        if (*nb == -2) {
+            my_putstr("\n");
+            return (-2);
+        }
+    }
     return (0);
 }

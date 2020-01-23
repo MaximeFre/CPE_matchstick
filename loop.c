@@ -71,7 +71,6 @@ int get_col(info_t *info, int line)
     my_putstr("Matches: ");
     nb = input();
     if (nb == -1 || nb == -2) {
-        my_putstr("\n");
         return (nb);
     } if (nb > info->max) {
         my_putstr("Error: you cannot remove more than ");
